@@ -6,7 +6,7 @@ const menuItemSchema = new mongoose.Schema({
   price: { type: Number, required: true },
   description: { type: String },
   image: { type: String },
-  rating: { type: Number, default: 0 },
+  ratings: { type: Number, default: 0 },
   reviews: { type: Number, default: 0 }
 });
 

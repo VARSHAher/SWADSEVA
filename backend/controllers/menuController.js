@@ -1,65 +1,93 @@
-const MenuItem = require("../models/MenuItem");
+const asyncHandler = require("express-async-handler");
+const MenuItem = require("../models/menuItem");
 
-// Get all menu items
-const getMenu = async (req, res) => {
-  try {
-    const menu = await MenuItem.find(); // fetch everything
-    res.json(menu);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+// @desc    Get all menu items
+// @route   GET /api/menu
+// @access  Public
+const getMenu = asyncHandler(async (req, res) => {
+  const menuItems = await MenuItem.find({});
+  res.json(menuItems);
+});
+
+
+
+// @desc    Add a new menu item
+// @route   POST /api/admin/menu
+// @access  Private/Admin
+const addMenuItem = asyncHandler(async (req, res) => {
+  const { name, description, price, image, category } = req.body;
+
+  // Ensure all required fields are present
+  if (!name || !price) {
+    res.status(400);
+    throw new Error("Please fill in all required fields.");
   }
-};
 
-// Add a new menu item
-const addMenuItem = async (req, res) => {
-  try {
-    const newItem = new MenuItem(req.body);
-    const savedItem = await newItem.save();
-    res.status(201).json(savedItem);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+  const menuItem = await MenuItem.create({
+    name,
+    description,
+    price,
+    image,
+    category,
+    createdBy: req.user._id,
+  });
+
+  if (menuItem) {
+    res.status(201).json({
+      success: true,
+      message: "Menu item added successfully",
+      data: menuItem,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid menu item data");
   }
-};
+});
 
+// @desc    Update a menu item
+// @route   PUT /api/admin/menu/:id
+// @access  Private/Admin
+const updateMenuItem = asyncHandler(async (req, res) => {
+  const { name, description, price, image, category } = req.body;
+  const menuItem = await MenuItem.findById(req.params.id);
 
+  if (menuItem) {
+    menuItem.name = name || menuItem.name;
+    menuItem.description = description || menuItem.description;
+    menuItem.price = price || menuItem.price;
+    menuItem.image = image || menuItem.image;
+    menuItem.category = category || menuItem.category;
 
-// Delete a menu item by ID
-const deleteMenuItem = async (req, res) => {
-  try {
-    const deletedItem = await MenuItem.findByIdAndDelete(req.params.id);
-
-    if (!deletedItem) {
-      return res.status(404).json({ message: "Item not found" });
-    }
-
-    res.json({ message: "Item deleted successfully" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+    const updatedItem = await menuItem.save();
+    res.json({
+      success: true,
+      message: "Menu item updated successfully",
+      data: updatedItem,
+    });
+  } else {
+    res.status(404);
+    throw new Error("Menu item not found");
   }
-};
+});
 
-// Update a menu item by ID
-const updateMenuItem = async (req, res) => {
-  try {
-    const updatedItem = await MenuItem.findByIdAndUpdate(
-      req.params.id,   // id from URL
-      req.body,        // new data
-      { new: true }    // return updated doc
-    );
+// @desc    Delete a menu item
+// @route   DELETE /api/admin/menu/:id
+// @access  Private/Admin
+const deleteMenuItem = asyncHandler(async (req, res) => {
+  const menuItem = await MenuItem.findById(req.params.id);
 
-    if (!updatedItem) {
-      return res.status(404).json({ message: "Item not found" });
-    }
-
-    res.json(updatedItem);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+  if (menuItem) {
+    await menuItem.deleteOne();
+    res.json({ success: true, message: "Menu item removed" });
+  } else {
+    res.status(404);
+    throw new Error("Menu item not found");
   }
-};
+});
 
 module.exports = {
   getMenu,
   addMenuItem,
+  updateMenuItem,
   deleteMenuItem,
-  updateMenuItem,  
 };
