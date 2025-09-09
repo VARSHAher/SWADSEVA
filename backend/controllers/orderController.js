@@ -3,13 +3,15 @@ const Order = require("../models/Order");
 // Create new order
 const createOrder = async (req, res) => {
   try {
-    const { items, totalPrice } = req.body;
+    // Destructure new fields from the request body
+    const { items, totalPrice, customerName, customerAddress, customerPhone } = req.body;
 
     if (!items || items.length === 0) {
       return res.status(400).json({ msg: "Order must have at least one item" });
     }
 
-    const order = new Order({ items, totalPrice });
+    // Pass the new fields to the Order constructor
+    const order = new Order({ items, totalPrice, customerName, customerAddress, customerPhone });
     await order.save();
 
     res.status(201).json(order);

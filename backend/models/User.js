@@ -16,6 +16,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please enter a password"],
     },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user", // every signup will be a user unless we change it manually
+    },
   },
   { timestamps: true }
 );

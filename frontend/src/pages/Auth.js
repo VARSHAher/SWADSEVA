@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const Auth = () => {
+const Auth = ({ onLogin }) => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -39,12 +39,17 @@ const Auth = () => {
       // Save user info to localStorage
       localStorage.setItem("userInfo", JSON.stringify(data));
 
-      // Dispatch custom event for Header.js
-      window.dispatchEvent(new Event("storageChange"));
+      // ✅ Call onLogin so App state updates immediately
+      if (onLogin) onLogin(data);
 
       toast.success(isSignUp ? "Account created!" : "Signed in successfully!");
 
-      navigate("/"); // redirect to home
+      // ✅ Redirect immediately
+      if (data.role === "admin") {
+        navigate("/");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       toast.error(err.message);
     }
@@ -56,7 +61,6 @@ const Auth = () => {
         <h2 className="text-2xl font-bold text-center mb-6">
           {isSignUp ? "Create an Account" : "Welcome Back"}
         </h2>
-
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           {isSignUp && (
             <input

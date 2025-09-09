@@ -7,11 +7,9 @@ const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "30d" });
 };
 
-// @desc    Register a new user
-// @route   POST /api/users/register
-// @access  Public
+// --- Register ---
 const registerUser = asyncHandler(async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, role } = req.body;
 
   if (!username || !email || !password) {
     res.status(400);
@@ -24,13 +22,19 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("User already exists");
   }
 
-  const user = await User.create({ username, email, password });
+  const user = await User.create({
+    username,
+    email,
+    password,
+    role: role || "user",
+  });
 
   if (user) {
     res.status(201).json({
       _id: user._id,
       username: user.username,
       email: user.email,
+      role: user.role,
       token: generateToken(user._id),
     });
   } else {
@@ -39,9 +43,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Login user
-// @route   POST /api/users/login
-// @access  Public
+// --- Login ---
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -52,6 +54,7 @@ const loginUser = asyncHandler(async (req, res) => {
       _id: user._id,
       username: user.username,
       email: user.email,
+      role: user.role,
       token: generateToken(user._id),
     });
   } else {
@@ -60,4 +63,64 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { registerUser, loginUser };
+// --- Logout ---
+const logoutUser = asyncHandler(async (req, res) => {
+  res.clearCookie("token"); // if using cookies
+  res.status(200).json({ message: "Logged out successfully" });
+});
+
+// --- Get current user ---
+const getMe = asyncHandler(async (req, res) => {
+  if (!req.user) {
+    res.status(401);
+    throw new Error("Not authorized");
+  }
+
+  res.json({
+    _id: req.user._id,
+    username: req.user.username,
+    email: req.user.email,
+    role: req.user.role,
+  });
+});
+
+// --- Update user ---
+const updateUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const updates = req.body;
+
+  const updatedUser = await User.findByIdAndUpdate(id, updates, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!updatedUser) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  res.status(200).json(updatedUser);
+});
+
+// --- Delete user ---
+const deleteUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  const user = await User.findById(id);
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  await user.remove();
+  res.status(200).json({ message: "User deleted successfully" });
+});
+
+module.exports = {
+  registerUser,
+  loginUser,
+  logoutUser,
+  getMe,
+  updateUser,
+  deleteUser,
+};

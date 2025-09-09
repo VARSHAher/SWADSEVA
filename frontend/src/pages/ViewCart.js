@@ -7,6 +7,12 @@ const ViewCart = () => {
   const [cart, setCart] = useState({ items: [], totalPrice: 0 });
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
+  // Add new state for customer info
+  const [customerInfo, setCustomerInfo] = useState({
+    customerName: "",
+    customerAddress: "",
+    customerPhone: "",
+  });
   const navigate = useNavigate();
 
   const fetchCart = async () => {
@@ -67,41 +73,58 @@ const ViewCart = () => {
     }
   };
 
-const handleCheckout = async () => {
-  try {
-    setMessage("Processing your payment...");
-    await new Promise(resolve => setTimeout(resolve, 2000));
+  // Handle form input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setCustomerInfo({ ...customerInfo, [name]: value });
+  };
 
-    const orderToSave = {
-      items: cart.items.map(item => ({
-        itemId: item.itemId,
-        name: item.name,
-        price: item.price,
-        quantity: item.quantity,
-        image: item.image
-      })),
-      totalPrice: cart.totalPrice,
-    };
+  const handleCheckout = async () => {
+    try {
+      if (!customerInfo.customerName || !customerInfo.customerAddress || !customerInfo.customerPhone) {
+        setMessage("Please fill out all the fields before proceeding to payment.");
+        return;
+      }
+      
+      setMessage("Processing your payment...");
+      await new Promise(resolve => setTimeout(resolve, 2000));
 
-    // Save order
-    await axios.post("http://localhost:5000/api/orders", orderToSave);
+      const orderToSave = {
+        items: cart.items.map(item => ({
+          itemId: item.itemId,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          image: item.image
+        })),
+        totalPrice: cart.totalPrice,
+        // Include new customer info
+        customerName: customerInfo.customerName,
+        customerAddress: customerInfo.customerAddress,
+        customerPhone: customerInfo.customerPhone,
+      };
 
-    // Clear cart
-    await axios.delete("http://localhost:5000/api/cart/clear");
+      // Save order
+      await axios.post("http://localhost:5000/api/orders", orderToSave);
 
-    // Update state
-    setCart({ items: [], totalPrice: 0 });
-    setMessage("Payment successful! Redirecting to orders...");
+      // Clear cart
+      await axios.delete("http://localhost:5000/api/cart/clear");
 
-    // Redirect after 4s
-    setTimeout(() => navigate("/orders"), 4000);
+      // Update state
+      setCart({ items: [], totalPrice: 0 });
+      setMessage("Payment successful! Redirecting to orders...");
+      
+      // Clear form
+      setCustomerInfo({ customerName: "", customerAddress: "", customerPhone: "" });
 
-  } catch (error) {
-    console.error("Error during checkout:", error.response?.data || error.message);
-    setMessage("Payment failed. Please try again.");
-  }
-};
+      // Redirect after 4s
+      setTimeout(() => navigate("/orders"), 4000);
 
+    } catch (error) {
+      console.error("Error during checkout:", error.response?.data || error.message);
+      setMessage("Payment failed. Please try again.");
+    }
+  };
 
   if (loading) {
     return (
@@ -201,6 +224,48 @@ const handleCheckout = async () => {
               </motion.div>
             ))}
 
+            <div className="mt-8 p-6 bg-white rounded-xl shadow-lg">
+              <h2 className="text-2xl font-bold mb-4">Customer Information</h2>
+              <form className="space-y-4">
+                <div>
+                  <label htmlFor="customerName" className="block text-sm font-medium text-gray-700">Name</label>
+                  <input
+                    type="text"
+                    id="customerName"
+                    name="customerName"
+                    value={customerInfo.customerName}
+                    onChange={handleInputChange}
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="customerAddress" className="block text-sm font-medium text-gray-700">Address</label>
+                  <input
+                    type="text"
+                    id="customerAddress"
+                    name="customerAddress"
+                    value={customerInfo.customerAddress}
+                    onChange={handleInputChange}
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="customerPhone" className="block text-sm font-medium text-gray-700">Phone Number</label>
+                  <input
+                    type="tel"
+                    id="customerPhone"
+                    name="customerPhone"
+                    value={customerInfo.customerPhone}
+                    onChange={handleInputChange}
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500"
+                    required
+                  />
+                </div>
+              </form>
+            </div>
+            
             <div className="flex flex-col sm:flex-row justify-between items-center mt-8 p-6 bg-white rounded-xl shadow-lg">
               <p className="text-2xl font-bold mb-4 sm:mb-0">
                 Total: <span className="text-orange-500">${Number(cart.totalPrice).toFixed(2)}</span>
