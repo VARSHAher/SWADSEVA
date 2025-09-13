@@ -10,7 +10,7 @@ const menuItemSchema = new mongoose.Schema({
   reviews: { type: Number, default: 0 },
   restaurantName: { type: String },
   restaurantLogo: { type: String },
-  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true } // ✅ Add this
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true } 
 });
 
 const MenuItem = mongoose.model("MenuItem", menuItemSchema, "menu");

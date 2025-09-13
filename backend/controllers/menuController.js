@@ -1,19 +1,15 @@
-// menuController.js
+
 
 const asyncHandler = require("express-async-handler");
 const MenuItem = require("../models/menuItem");
 
-// @desc    Get all menu items
-// @route   GET /api/menu
-// @access  Public
+
 const getMenu = asyncHandler(async (req, res) => {
   const menuItems = await MenuItem.find({});
   res.json(menuItems);
 });
 
-// @desc    Add a new menu item
-// @route   POST /api/admin/menu
-// @access  Private/Admin
+
 const addMenuItem = asyncHandler(async (req, res) => {
   const {
     name,
@@ -27,7 +23,7 @@ const addMenuItem = asyncHandler(async (req, res) => {
     restaurantLogo,
   } = req.body;
 
-  // Ensure all required fields are present
+  
   if (!name || !price) {
     res.status(400);
     throw new Error("Please fill in all required fields.");
@@ -58,9 +54,7 @@ const addMenuItem = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Delete a menu item
-// @route   DELETE /api/menu/:id
-// @access  Private/Admin
+
 const deleteMenuItem = asyncHandler(async (req, res) => {
   const menuItem = await MenuItem.findById(req.params.id);
 
@@ -69,7 +63,7 @@ const deleteMenuItem = asyncHandler(async (req, res) => {
     throw new Error("Menu item not found.");
   }
 
-  // Check if the logged-in user is an admin
+
   if (req.user.role !== "admin") {
     res.status(401);
     throw new Error("Not authorized to delete this item.");
@@ -79,9 +73,7 @@ const deleteMenuItem = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Menu item deleted successfully." });
 });
 
-// @desc    Update a menu item
-// @route   PUT /api/menu/:id
-// @access  Private/Admin
+
 const updateMenuItem = asyncHandler(async (req, res) => {
   const menuItem = await MenuItem.findById(req.params.id);
 
@@ -116,11 +108,9 @@ const updateMenuItem = asyncHandler(async (req, res) => {
   res.json(updatedItem);
 });
 
-// @desc    Update all menu items with restaurant name and logo
-// @route   POST /api/menu/update-all
-// @access  Private/Admin
+
 const updateAllMenuItems = asyncHandler(async (req, res) => {
-  // Use English names here
+  
   const restaurantData = {
     Burger: [
       {

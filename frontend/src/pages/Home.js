@@ -1,35 +1,63 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUtensils, faTruckFast, faStar } from "@fortawesome/free-solid-svg-icons";
-import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
-import { toast, ToastContainer } from 'react-toastify'; 
+import {
+  faUtensils,
+  faTruckFast,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
+import { toast, ToastContainer } from "react-toastify";
 
- const handleSubmit = (event) => {
-    event.preventDefault();
-console.log('Form submitted!');
+const handleSubmit = (event) => {
+  event.preventDefault();
+  console.log("Form submitted!");
 
-   
-    toast.success("Message sent successfully!", {
-      position: "top-center",
-      autoClose: 3000, 
-    });
+  toast.success("Message sent successfully!", {
+    position: "top-center",
+    autoClose: 3000,
+  });
 
-    
-    setTimeout(() => {
-      event.target.reset();
-    }, 500);
-  };
+  setTimeout(() => {
+    event.target.reset();
+  }, 500);
+};
 
 const partnerLogos = [
-  { name: "McDonald's", image: "https://logos-world.net/wp-content/uploads/2020/04/McDonalds-Logo.png" },
-  { name: "Burger King", image: "https://tse1.mm.bing.net/th/id/OIP.eJZarRJ_GKyMmwTb9Zdq3wHaIE?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3" },
-  { name: "Domino's Pizza", image: "https://th.bing.com/th/id/R.e27ecfb0b927672e65c6549cdbc4caa1?rik=NAAPOspR7JUGZw&riu=http%3a%2f%2fwww.voucherbox.co.uk%2fuploads%2flogos%2fdomino-s-pizza.jpg&ehk=efh4hSue2NxaQNJ7SrXyt6szUYeZoCbGQ6Nnc%2fNCG4U%3d&risl=&pid=ImgRaw&r=0" },
-  { name: "Mio Amore", image: "https://tse2.mm.bing.net/th/id/OIP.kQo4lnfnhCl5D1GcYIlPpAHaHa?r=0&cb=ucfimgc2&rs=1&pid=ImgDetMain&o=7&rm=3" },
-  { name: "Bhikharam Chandmal", image: "https://tiimg.tistatic.com/gd/co_logos/ASHISH-PROTEINS-FOOD-P-LTD--v1-84283.jpeg" },
-  { name: "Dunkin'", image: "https://logos-world.net/wp-content/uploads/2020/12/Dunkin-Emblem.png" },
+  {
+    name: "McDonald's",
+    image:
+      "https://logos-world.net/wp-content/uploads/2020/04/McDonalds-Logo.png",
+  },
+  {
+    name: "Burger King",
+    image:
+      "https://tse1.mm.bing.net/th/id/OIP.eJZarRJ_GKyMmwTb9Zdq3wHaIE?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3",
+  },
+  {
+    name: "Domino's Pizza",
+    image:
+      "https://th.bing.com/th/id/R.e27ecfb0b927672e65c6549cdbc4caa1?rik=NAAPOspR7JUGZw&riu=http%3a%2f%2fwww.voucherbox.co.uk%2fuploads%2flogos%2fdomino-s-pizza.jpg&ehk=efh4hSue2NxaQNJ7SrXyt6szUYeZoCbGQ6Nnc%2fNCG4U%3d&risl=&pid=ImgRaw&r=0",
+  },
+  {
+    name: "Mio Amore",
+    image:
+      "https://tse2.mm.bing.net/th/id/OIP.kQo4lnfnhCl5D1GcYIlPpAHaHa?r=0&cb=ucfimgc2&rs=1&pid=ImgDetMain&o=7&rm=3",
+  },
+  {
+    name: "Bhikharam Chandmal",
+    image:
+      "https://tiimg.tistatic.com/gd/co_logos/ASHISH-PROTEINS-FOOD-P-LTD--v1-84283.jpeg",
+  },
+  {
+    name: "Dunkin'",
+    image:
+      "https://logos-world.net/wp-content/uploads/2020/12/Dunkin-Emblem.png",
+  },
   { name: "Starbucks", image: "https://www.starbucks.in/assets/icon/logo.svg" },
-  { name: "Arsalan", image: "https://image3.mouthshut.com/images/imagesp/925697258s.png" },
+  {
+    name: "Arsalan",
+    image: "https://image3.mouthshut.com/images/imagesp/925697258s.png",
+  },
 ];
-
 
 export default function Home({ isAdmin }) {
   return (
@@ -42,13 +70,20 @@ export default function Home({ isAdmin }) {
               Welcome, Admin
             </h1>
             <p className="text-[1.80em] font-bold text-[#777] mb-8">
-              Manage the menu, Track the orders, and keep everything running smoothly.
+              Manage the menu, Track the orders, and keep everything running
+              smoothly.
             </p>
             <div className="buttons flex gap-5">
-              <a href="/admin/create-menu" className="bg-[orange] text-white px-4 py-3 rounded-[8px] font-bold hover:bg-[#ff8c00]">
+              <a
+                href="/admin/create-menu"
+                className="bg-[orange] text-white px-4 py-3 rounded-[8px] font-bold hover:bg-[#ff8c00]"
+              >
                 Create Menu
               </a>
-              <a href="/contact" className="bg-[#f26522] text-white px-4 py-3 rounded-[8px] font-bold hover:bg-[#d14c0e]">
+              <a
+                href="/contact"
+                className="bg-[#f26522] text-white px-4 py-3 rounded-[8px] font-bold hover:bg-[#d14c0e]"
+              >
                 Track Order
               </a>
             </div>
@@ -72,10 +107,16 @@ export default function Home({ isAdmin }) {
               Within a few clicks, find meals that are accessible near you
             </p>
             <div className="buttons flex gap-5">
-              <a href="/cart" className="bg-[orange] text-white px-4 py-3 rounded-[8px] font-bold hover:bg-[#ff8c00]">
+              <a
+                href="/cart"
+                className="bg-[orange] text-white px-4 py-3 rounded-[8px] font-bold hover:bg-[#ff8c00]"
+              >
                 Order Now
               </a>
-              <a href="/menu" className="bg-[#f26522] text-white px-4 py-3 rounded-[8px] font-bold hover:bg-[#d14c0e]">
+              <a
+                href="/menu"
+                className="bg-[#f26522] text-white px-4 py-3 rounded-[8px] font-bold hover:bg-[#d14c0e]"
+              >
                 Explore Menu
               </a>
             </div>
@@ -96,7 +137,8 @@ export default function Home({ isAdmin }) {
           {/* Why Choose Swad Seva */}
           <section className="features text-center my-20 max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-orange-600 mb-14 relative inline-block">
-              Why Choose <span className="brand italic text-gray-800">Swad Seva</span>
+              Why Choose{" "}
+              <span className="brand italic text-gray-800">Swad Seva</span>
               <span className="block w-3/5 h-1 bg-gradient-to-r from-orange-600 to-orange-400 mx-auto mt-3 rounded"></span>
             </h2>
 
@@ -108,9 +150,12 @@ export default function Home({ isAdmin }) {
                   <div className="icon-box filled w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-5 bg-orange-600 text-white">
                     <FontAwesomeIcon icon={faUtensils} />
                   </div>
-                  <h3 className="text-lg font-semibold mb-3 text-gray-900">Delicious Dishes</h3>
+                  <h3 className="text-lg font-semibold mb-3 text-gray-900">
+                    Delicious Dishes
+                  </h3>
                   <p className="text-sm text-gray-600 leading-relaxed">
-                    Wide variety of cuisines freshly prepared by top chefs with love.
+                    Wide variety of cuisines freshly prepared by top chefs with
+                    love.
                   </p>
                 </div>
 
@@ -119,7 +164,9 @@ export default function Home({ isAdmin }) {
                   <div className="icon-box outlined w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-5 border-2 border-orange-600 text-orange-600">
                     <FontAwesomeIcon icon={faTruckFast} />
                   </div>
-                  <h3 className="text-lg font-semibold mb-3 text-gray-900">Fast Delivery</h3>
+                  <h3 className="text-lg font-semibold mb-3 text-gray-900">
+                    Fast Delivery
+                  </h3>
                   <p className="text-sm text-gray-600 leading-relaxed">
                     We deliver joy and food right on time, every time you order.
                   </p>
@@ -130,7 +177,9 @@ export default function Home({ isAdmin }) {
                   <div className="icon-box filled w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-5 bg-orange-600 text-white">
                     <FontAwesomeIcon icon={faStar} />
                   </div>
-                  <h3 className="text-lg font-semibold mb-3 text-gray-900">Customer Satisfaction</h3>
+                  <h3 className="text-lg font-semibold mb-3 text-gray-900">
+                    Customer Satisfaction
+                  </h3>
                   <p className="text-sm text-gray-600 leading-relaxed">
                     Thousands of happy customers trust us for quality & service.
                   </p>
@@ -140,17 +189,20 @@ export default function Home({ isAdmin }) {
           </section>
 
           {/* ABOUT */}
-          <section id="about" className="about grid md:grid-cols-[1fr_480px] gap-8 px-[50px] pt-[0px] pb-[40px] items-center mt-[28px]">
+          <section
+            id="about"
+            className="about grid md:grid-cols-[1fr_480px] gap-8 px-[50px] pt-[0px] pb-[40px] items-center mt-[28px]"
+          >
             {/* left card */}
             <div className="about-card rounded-[24px] p-[50px] bg-[linear-gradient(180deg,#fff3eb,transparent)] shadow-[0_8px_30px_rgba(236,206,146,0.884)] border-[2px] border-[rgba(236,206,146,0.884)] backdrop-blur-[6px]">
               <h2 className="text-[40px] font-bold leading-[1.02] mb-3 text-[#333]">
                 We deliver joy (and food) — on time, every time.
               </h2>
               <p className="text-[16px] text-black max-w-[60%] leading-[1.6] mb-6">
-                SwadSeva was founded to make mealtime moments easier. From quick solo
-                lunches to weekend feasts, our mission is to connect delicious local
-                kitchens to hungry humans with speed, transparency and a little dash of
-                delight.
+                SwadSeva was founded to make mealtime moments easier. From quick
+                solo lunches to weekend feasts, our mission is to connect
+                delicious local kitchens to hungry humans with speed,
+                transparency and a little dash of delight.
               </p>
 
               <div className="stats flex gap-3 mt-5">
@@ -166,7 +218,7 @@ export default function Home({ isAdmin }) {
                   <b className="block text-[18px]">50k</b>
                   <small style={{ color: "black" }}>partner restaurants</small>
                 </div>
-              </div>        
+              </div>
             </div>
 
             {/* right visual */}
@@ -255,110 +307,140 @@ export default function Home({ isAdmin }) {
               </div>
             </div>
 
-            {/* menu grid */}
             <div className="menu-section mt-6">
-              <div className="menu-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[50px] px-10 md:px-20 mt-6">
-                {/* Card 1 */}
-                <div className="card bg-white rounded-[12px] overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.08)] flex flex-col">
-                  <img
-                    src="https://tse2.mm.bing.net/th/id/OIP.SkaQutaZ3HeacQ72BbA4EgHaHa?r=0&w=550&h=550&rs=1&pid=ImgDetMain&o=7&rm=3"
-                    alt="Soup"
-                    className="w-full h-[155px] object-cover"
-                  />
-                  <div className="card-info p-3 flex-1">
-                    <div className="name-reviews flex items-center gap-3">
-                      <h2 className="text-[18px] font-semibold">Rice Burger</h2>
-                      <div className="reviews text-[#ff9800] text-[13px]">
-                        ⭐ 4.9{" "}
-                        <span className="text-[#555] ml-2">(6,705 reviews)</span>
-                      </div>
-                    </div>
-                    <p className="text-[14px] text-[#555] leading-[1.4] mt-2">
-                      A delicious burger made with a rice patty
-                    </p>
-                    <div className="price mt-3 font-bold">$17.00</div>
-                  </div>
-                  <button className="cart-btn bg-[#e96610] text-white rounded-b-[8px] py-2 hover:bg-[#c85b12]">
-                    Add to cart
-                  </button>
-                </div>
+  <div className="menu-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[50px] px-10 md:px-20 mt-6">
+    {/* Card 1 */}
+    <div className="card bg-white rounded-[12px] overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.08)] flex flex-col">
+      <img
+        src="https://tse2.mm.bing.net/th/id/OIP.SkaQutaZ3HeacQ72BbA4EgHaHa?r=0&w=550&h=550&rs=1&pid=ImgDetMain&o=7&rm=3"
+        alt="Soup"
+        className="w-full h-[155px] object-cover"
+      />
+      <div className="card-info p-3 flex-1">
+        <div className="flex justify-between items-start mb-2">
+          <h2 className="text-[18px] font-semibold leading-snug flex-1">Rice Burger</h2>
+          <div className="flex items-center gap-2 ml-4">
+            <img
+              src="https://logos-world.net/wp-content/uploads/2020/04/McDonalds-Logo.png"
+              alt="McDonald's logo"
+              className="w-6 h-6 rounded-full object-cover"
+            />
+            <p className="text-sm text-gray-600 font-medium">McDonald's</p>
+          </div>
+        </div>
+        <div className="reviews text-[#ff9800] text-[13px] mb-2">
+          ⭐ 4.9{" "}
+          <span className="text-[#555] ml-2">(6,705 reviews)</span>
+        </div>
+        <p className="text-[14px] text-[#555] leading-[1.4] mt-2">
+          A delicious burger made with a rice patty
+        </p>
+        <div className="price mt-3 font-bold">$17.00</div>
+      </div>
+      <button className="cart-btn bg-[#e96610] text-white rounded-b-[8px] py-2 hover:bg-[#c85b12]">
+        Add to cart
+      </button>
+    </div>
 
-                {/* Card 2 */}
-                <div className="card bg-white rounded-[12px] overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.08)] flex flex-col">
-                  <img
-                    src="https://wallpaperaccess.com/full/2004483.jpg"
-                    alt="Burger"
-                    className="w-full h-[155px] object-cover"
-                  />
-                  <div className="card-info p-3 flex-1">
-                    <div className="name-reviews flex items-center gap-3">
-                      <h2 className="text-[18px] font-semibold">Cheeseburger</h2>
-                      <div className="reviews text-[#ff9800] text-[13px]">
-                        ⭐ 4.5{" "}
-                        <span className="text-[#555] ml-2">(5,123 reviews)</span>
-                      </div>
-                    </div>
-                    <p className="text-[14px] text-[#555] leading-[1.4] mt-2">
-                      A classic cheeseburger with all the fixings
-                    </p>
-                    <div className="price mt-3 font-bold">$15.00</div>
-                  </div>
-                  <button className="cart-btn bg-[#e96610] text-white rounded-b-[8px] py-2 hover:bg-[#c85b12]">
-                    Add to cart
-                  </button>
-                </div>
+    {/* Card 2 */}
+    <div className="card bg-white rounded-[12px] overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.08)] flex flex-col">
+      <img
+        src="https://wallpaperaccess.com/full/2004483.jpg"
+        alt="Burger"
+        className="w-full h-[155px] object-cover"
+      />
+      <div className="card-info p-3 flex-1">
+        <div className="flex justify-between items-start mb-2">
+          <h2 className="text-[18px] font-semibold leading-snug flex-1">Cheeseburger</h2>
+          <div className="flex items-center gap-2 ml-4">
+            <img
+              src="https://tse1.mm.bing.net/th/id/OIP.eJZarRJ_GKyMmwTb9Zdq3wHaIE?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3"
+              alt="Burger King logo"
+              className="w-6 h-6 rounded-full object-cover"
+            />
+            <p className="text-sm text-gray-600 font-medium">Burger King</p>
+          </div>
+        </div>
+        <div className="reviews text-[#ff9800] text-[13px] mb-2">
+          ⭐ 4.5{" "}
+          <span className="text-[#555] ml-2">(5,123 reviews)</span>
+        </div>
+        <p className="text-[14px] text-[#555] leading-[1.4] mt-2">
+          A classic cheeseburger with all the fixings
+        </p>
+        <div className="price mt-3 font-bold">$15.00</div>
+      </div>
+      <button className="cart-btn bg-[#e96610] text-white rounded-b-[8px] py-2 hover:bg-[#c85b12]">
+        Add to cart
+      </button>
+    </div>
 
-                {/* Card 3 */}
-                <div className="card bg-white rounded-[12px] overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.08)] flex flex-col">
-                  <img
-                    src="https://www.inspiredtaste.net/wp-content/uploads/2023/09/Margherita-Pizza-2-1200.jpg"
-                    alt="Margherita"
-                    className="w-full h-[155px] object-cover"
-                  />
-                  <div className="card-info p-3 flex-1">
-                    <div className="name-reviews flex items-center gap-3">
-                      <h2 className="text-[18px] font-semibold">Margherita Pizza</h2>
-                      <div className="reviews text-[#ff9800] text-[13px]">
-                        ⭐ 4.9{" "}
-                        <span className="text-[#555] ml-2">(5000 reviews)</span>
-                      </div>
-                    </div>
-                    <p className="text-[14px] text-[#555] leading-[1.4] mt-2">
-                      Classic cheese and tomato pizza.
-                    </p>
-                    <div className="price mt-3 font-bold">$22.00</div>
-                  </div>
-                  <button className="cart-btn bg-[#e96610] text-white rounded-b-[8px] py-2 hover:bg-[#c85b12]">
-                    Add to cart
-                  </button>
-                </div>
+    {/* Card 3 */}
+    <div className="card bg-white rounded-[12px] overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.08)] flex flex-col">
+      <img
+        src="https://www.inspiredtaste.net/wp-content/uploads/2023/09/Margherita-Pizza-2-1200.jpg"
+        alt="Margherita"
+        className="w-full h-[155px] object-cover"
+      />
+      <div className="card-info p-3 flex-1">
+        <div className="flex justify-between items-start mb-2">
+          <h2 className="text-[18px] font-semibold leading-snug flex-1">Margherita Pizza</h2>
+          <div className="flex items-center gap-2 ml-4">
+            <img
+              src="https://th.bing.com/th/id/R.e27ecfb0b927672e65c6549cdbc4caa1?rik=NAAPOspR7JUGZw&riu=http%3a%2f%2fwww.voucherbox.co.uk%2fuploads%2flogos%2fdomino-s-pizza.jpg&ehk=efh4hSue2NxaQNJ7SrXyt6szUYeZoCbGQ6Nnc%2fNCG4U%3d&risl=&pid=ImgRaw&r=0"
+              alt="Domino's Pizza logo"
+              className="w-6 h-6 rounded-full object-cover"
+            />
+            <p className="text-sm text-gray-600 font-medium">Domino's Pizza</p>
+          </div>
+        </div>
+        <div className="reviews text-[#ff9800] text-[13px] mb-2">
+          ⭐ 4.9{" "}
+          <span className="text-[#555] ml-2">(5000 reviews)</span>
+        </div>
+        <p className="text-[14px] text-[#555] leading-[1.4] mt-2">
+          Classic cheese and tomato pizza.
+        </p>
+        <div className="price mt-3 font-bold">$22.00</div>
+      </div>
+      <button className="cart-btn bg-[#e96610] text-white rounded-b-[8px] py-2 hover:bg-[#c85b12]">
+        Add to cart
+      </button>
+    </div>
 
-                {/* Card 4 */}
-                <div className="card bg-white rounded-[12px] overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.08)] flex flex-col">
-                  <img
-                    src="https://bing.com/th?id=OSK.1762ee796a990b9304ff2eff94d61408"
-                    alt="BBQ chicken"
-                    className="w-full h-[155px] object-cover"
-                  />
-                  <div className="card-info p-3 flex-1">
-                    <div className="name-reviews flex items-center gap-3">
-                      <h2 className="text-[18px] font-semibold">BBQ Chicken Pizza</h2>
-                      <div className="reviews text-[#ff9800] text-[13px]">
-                        ⭐ 4.9{" "}
-                        <span className="text-[#555] ml-2">(6,986 reviews)</span>
-                      </div>
-                    </div>
-                    <p className="text-[14px] text-[#555] leading-[1.4] mt-2">
-                      Grilled chicken with BBQ sauce.
-                    </p>
-                    <div className="price mt-3 font-bold">$26.00</div>
-                  </div>
-                  <button className="cart-btn bg-[#e96610] text-white rounded-b-[8px] py-2 hover:bg-[#c85b12]">
-                    Add to cart
-                  </button>
-                </div>
-              </div>
-
+    {/* Card 4 */}
+    <div className="card bg-white rounded-[12px] overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.08)] flex flex-col">
+      <img
+        src="https://bing.com/th?id=OSK.1762ee796a990b9304ff2eff94d61408"
+        alt="BBQ chicken"
+        className="w-full h-[155px] object-cover"
+      />
+      <div className="card-info p-3 flex-1">
+        <div className="flex justify-between items-start mb-2">
+          <h2 className="text-[18px] font-semibold leading-snug flex-1">BBQ Chicken Pizza</h2>
+          <div className="flex items-center gap-2 ml-4">
+            <img
+              src="https://th.bing.com/th/id/R.e27ecfb0b927672e65c6549cdbc4caa1?rik=NAAPOspR7JUGZw&riu=http%3a%2f%2fwww.voucherbox.co.uk%2fuploads%2flogos%2fdomino-s-pizza.jpg&ehk=efh4hSue2NxaQNJ7SrXyt6szUYeZoCbGQ6Nnc%2fNCG4U%3d&risl=&pid=ImgRaw&r=0"
+              alt="Domino's Pizza logo"
+              className="w-6 h-6 rounded-full object-cover"
+            />
+            <p className="text-sm text-gray-600 font-medium">Domino's Pizza</p>
+          </div>
+        </div>
+        <div className="reviews text-[#ff9800] text-[13px] mb-2">
+          ⭐ 4.9{" "}
+          <span className="text-[#555] ml-2">(6,986 reviews)</span>
+        </div>
+        <p className="text-[14px] text-[#555] leading-[1.4] mt-2">
+          Grilled chicken with BBQ sauce.
+        </p>
+        <div className="price mt-3 font-bold">$26.00</div>
+      </div>
+      <button className="cart-btn bg-[#e96610] text-white rounded-b-[8px] py-2 hover:bg-[#c85b12]">
+        Add to cart
+      </button>
+    </div>
+  </div>
               <div className="view-all-container flex justify-center mt-12">
                 <a
                   href="/menu"
@@ -379,14 +461,17 @@ export default function Home({ isAdmin }) {
                 </span>
                 <h2 className="mission__title text-[clamp(28px,3vw,36px)] font-extrabold mb-3">
                   Food that feels like home —{" "}
-                  <span className="accent text-[#ff6a2a]">delivered thoughtfully.</span>
+                  <span className="accent text-[#ff6a2a]">
+                    delivered thoughtfully.
+                  </span>
                 </h2>
                 <p className="mission__text text-[#555] leading-[1.7]">
-                  We began as a small team who loved food and hated waiting. Today, we
-                  focus on speed without sacrifice, supporting local restaurants with
-                  fair fees and transparent payouts. Our product design mixes
-                  simplicity with small delightful moments — like a friendly delivery
-                  photo or a chef’s note with your order.
+                  We began as a small team who loved food and hated waiting.
+                  Today, we focus on speed without sacrifice, supporting local
+                  restaurants with fair fees and transparent payouts. Our
+                  product design mixes simplicity with small delightful moments
+                  — like a friendly delivery photo or a chef’s note with your
+                  order.
                 </p>
               </div>
               <div className="right text-right">
@@ -413,10 +498,12 @@ export default function Home({ isAdmin }) {
                   className="w-[120px] h-[120px] rounded-full object-cover mb-4 mx-auto shadow-[0_6px_20px_rgba(255,87,34,0.3)]"
                 />
                 <h3 className="text-[20px] font-bold mb-1">Fiza</h3>
-                <p className="role text-[#ff5722] font-semibold mb-2">CEO & Co-founder</p>
+                <p className="role text-[#ff5722] font-semibold mb-2">
+                  CEO & Co-founder
+                </p>
                 <p className="bio text-[#555] text-[14px]">
-                  Former product manager, turned obsessed with reducing hangry moments
-                  worldwide.
+                  Former product manager, turned obsessed with reducing hangry
+                  moments worldwide.
                 </p>
               </div>
 
@@ -427,7 +514,9 @@ export default function Home({ isAdmin }) {
                   className="w-[120px] h-[120px] rounded-full object-cover mb-4 mx-auto shadow-[0_6px_20px_rgba(255,87,34,0.3)]"
                 />
                 <h3 className="text-[20px] font-bold mb-1">John</h3>
-                <p className="role text-[#ff5722] font-semibold mb-2">Managing Director</p>
+                <p className="role text-[#ff5722] font-semibold mb-2">
+                  Managing Director
+                </p>
                 <p className="bio text-[#555] text-[14px]">
                   Develop and implementing business strategies.
                 </p>
@@ -440,10 +529,12 @@ export default function Home({ isAdmin }) {
                   className="w-[120px] h-[120px] rounded-full object-cover mb-4 mx-auto shadow-[0_6px_20px_rgba(255,87,34,0.3)]"
                 />
                 <h3 className="text-[20px] font-bold mb-1">Olivia</h3>
-                <p className="role text-[#ff5722] font-semibold mb-2">Head of Ops</p>
+                <p className="role text-[#ff5722] font-semibold mb-2">
+                  Head of Ops
+                </p>
                 <p className="bio text-[#555] text-[14px]">
-                  Builds routing systems and driver-first tools that actually make
-                  deliveries faster.
+                  Builds routing systems and driver-first tools that actually
+                  make deliveries faster.
                 </p>
               </div>
 
@@ -454,7 +545,9 @@ export default function Home({ isAdmin }) {
                   className="w-[120px] h-[120px] rounded-full object-cover mb-4 mx-auto shadow-[0_6px_20px_rgba(255,87,34,0.3)]"
                 />
                 <h3 className="text-[20px] font-bold mb-1">Sophia</h3>
-                <p className="role text-[#ff5722] font-semibold mb-2">Design Lead</p>
+                <p className="role text-[#ff5722] font-semibold mb-2">
+                  Design Lead
+                </p>
                 <p className="bio text-[#555] text-[14px]">
                   Makes the product feel human with tiny micro-interactions and
                   thoughtful copy.
@@ -462,7 +555,7 @@ export default function Home({ isAdmin }) {
               </div>
             </div>
           </section>
-          
+
           {/* NEW SECTION: Our Partners */}
           <section className="partners text-center py-[80px] bg-[#fff3eb]">
             <h2 className="text-[36px] font-bold mb-12 italic">
@@ -470,7 +563,10 @@ export default function Home({ isAdmin }) {
             </h2>
             <div className="partner-grid max-w-[1100px] mx-auto grid gap-10 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 px-6">
               {partnerLogos.map((partner, index) => (
-                <div key={index} className="partner-card bg-white rounded-[20px] p-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:translate-y-[-10px] transition flex items-center justify-center">
+                <div
+                  key={index}
+                  className="partner-card bg-white rounded-[20px] p-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:translate-y-[-10px] transition flex items-center justify-center"
+                >
                   <img
                     src={partner.image}
                     alt={partner.name}
@@ -482,16 +578,22 @@ export default function Home({ isAdmin }) {
           </section>
 
           {/* CONTACT */}
-          <section id="contact" className="contact-section max-w-[1000px] mx-auto p-8 text-center">
+          <section
+            id="contact"
+            className="contact-section max-w-[1000px] mx-auto p-8 text-center"
+          >
             <h2 className="text-[2rem] font-bold mb-6">
-              Please Get In <span className="brand text-[#e96610]">Touch With Us</span>
+              Please Get In{" "}
+              <span className="brand text-[#e96610]">Touch With Us</span>
             </h2>
 
             <div className="contact-info flex flex-wrap justify-center gap-6 mb-8">
               <div className="info-card bg-white rounded-[12px] p-6 max-w-[220px] shadow-[0_4px_15px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition">
                 <span className="text-2xl block mb-2">📍</span>
                 <h3 className="text-lg font-semibold mb-1">Address</h3>
-                <p className="text-[#666]">A108 Adam Street, New York, NY 535022</p>
+                <p className="text-[#666]">
+                  A108 Adam Street, New York, NY 535022
+                </p>
               </div>
               <div className="info-card bg-white rounded-[12px] p-6 max-w-[220px] shadow-[0_4px_15px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition">
                 <span className="text-2xl block mb-2">📞</span>
@@ -515,8 +617,10 @@ export default function Home({ isAdmin }) {
             </div>
 
             {/* FORM */}
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-[1000px] mx-auto"  onSubmit={handleSubmit}>
-            
+            <form
+              className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-[1000px] mx-auto"
+              onSubmit={handleSubmit}
+            >
               <input
                 type="text"
                 placeholder="Name"
@@ -561,7 +665,10 @@ export default function Home({ isAdmin }) {
 
                   {/* Tick Icon */}
                   <span className="absolute right-4 flex items-center opacity-0 translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-                    <FontAwesomeIcon icon={faCircleCheck} className="text-xl text-green-300" />
+                    <FontAwesomeIcon
+                      icon={faCircleCheck}
+                      className="text-xl text-green-300"
+                    />
                   </span>
                 </button>
               </div>

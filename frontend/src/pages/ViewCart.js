@@ -7,7 +7,7 @@ const ViewCart = () => {
   const [cart, setCart] = useState({ items: [], totalPrice: 0 });
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
-  // Add new state for customer info
+ 
   const [customerInfo, setCustomerInfo] = useState({
     customerName: "",
     customerAddress: "",
@@ -73,7 +73,7 @@ const ViewCart = () => {
     }
   };
 
-  // Handle form input changes
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setCustomerInfo({ ...customerInfo, [name]: value });
@@ -98,26 +98,26 @@ const ViewCart = () => {
           image: item.image
         })),
         totalPrice: cart.totalPrice,
-        // Include new customer info
+       
         customerName: customerInfo.customerName,
         customerAddress: customerInfo.customerAddress,
         customerPhone: customerInfo.customerPhone,
       };
 
-      // Save order
+
       await axios.post("http://localhost:5000/api/orders", orderToSave);
 
-      // Clear cart
+
       await axios.delete("http://localhost:5000/api/cart/clear");
 
-      // Update state
+   
       setCart({ items: [], totalPrice: 0 });
       setMessage("Payment successful! Redirecting to orders...");
       
-      // Clear form
+      
       setCustomerInfo({ customerName: "", customerAddress: "", customerPhone: "" });
 
-      // Redirect after 4s
+      
       setTimeout(() => navigate("/orders"), 4000);
 
     } catch (error) {

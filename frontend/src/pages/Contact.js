@@ -30,11 +30,11 @@ console.log('Form submitted!');
     }, 500);
   };
 
-  // Function to determine the status of an order
+ 
   const getOrderStatus = (createdAt) => {
     const orderTime = new Date(createdAt).getTime();
     const currentTime = new Date().getTime();
-    const elapsedTime = (currentTime - orderTime) / 1000 / 60; // elapsed time in minutes
+    const elapsedTime = (currentTime - orderTime) / 1000 / 60; 
 
     if (elapsedTime < 3) {
       return {
@@ -61,7 +61,7 @@ console.log('Form submitted!');
   };
 
   useEffect(() => {
-    // Only fetch and track orders if the user is an admin
+   
     if (isAdmin) {
       const fetchOrders = async () => {
         try {
@@ -79,10 +79,10 @@ console.log('Form submitted!');
 
       fetchOrders();
 
-      // Set an interval to re-fetch orders and update status every 30 seconds
+     
       const intervalId = setInterval(fetchOrders, 30000);
 
-      // Clean up the interval when the component unmounts or isAdmin status changes
+      
       return () => clearInterval(intervalId);
     }
   }, [isAdmin]);
@@ -94,7 +94,7 @@ console.log('Form submitted!');
 
   const timelineSteps = ["In Preparation", "Out for Delivery", "Delivered"];
 
-  // Conditional Rendering: If admin, show track order page
+ 
   if (isAdmin) {
     if (loading) {
       return (
@@ -265,7 +265,6 @@ console.log('Form submitted!');
     );
   }
 
-  // Original Contact page content for regular users
   return (
     <div>
       <section

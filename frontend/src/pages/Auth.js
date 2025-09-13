@@ -36,15 +36,15 @@ const Auth = ({ onLogin }) => {
         throw new Error(data.message || "Something went wrong");
       }
 
-      // Save user info to localStorage
+      
       localStorage.setItem("userInfo", JSON.stringify(data));
 
-      // ✅ Call onLogin so App state updates immediately
+
       if (onLogin) onLogin(data);
 
       toast.success(isSignUp ? "Account created!" : "Signed in successfully!");
 
-      // ✅ Redirect immediately
+  
       if (data.role === "admin") {
         navigate("/");
       } else {

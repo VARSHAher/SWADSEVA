@@ -1,11 +1,11 @@
-// src/pages/Orders.js
+
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
 
-// User Orders Component
+
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -23,7 +23,7 @@ const Orders = () => {
     };
     fetchOrders();
 
-    // Set an interval to update the status every 10 seconds
+
     const intervalId = setInterval(() => {
       setOrders(prevOrders => [...prevOrders]);
     }, 10000);

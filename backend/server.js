@@ -8,11 +8,11 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
+
 app.use(express.json());
 app.use(cors());
 
-// Routes
+
 const userRoutes = require("./routes/userRoutes");
 const menuRoutes = require("./routes/menuRoutes");
 const cartRoutes = require("./routes/cartRoutes");
@@ -23,7 +23,7 @@ app.use("/api/menu", menuRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/orders", orderRoutes);
 
-// Connect to MongoDB and start server
+
 const PORT = process.env.PORT || 5000;
 
 mongoose

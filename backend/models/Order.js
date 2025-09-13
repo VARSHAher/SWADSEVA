@@ -12,7 +12,7 @@ const orderSchema = new mongoose.Schema({
   ],
   totalPrice: { type: Number, required: true },
   
-  // Add new fields for user information
+
   customerName: { type: String, required: true },
   customerAddress: { type: String, required: true },
   customerPhone: { type: String, required: true },

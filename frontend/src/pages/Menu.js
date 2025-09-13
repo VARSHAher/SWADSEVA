@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-// The Menu component now receives the menuItems and searchQuery props
+
 const Menu = ({ isAdmin, searchQuery, menuItems }) => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,9 +43,9 @@ const Menu = ({ isAdmin, searchQuery, menuItems }) => {
     },
   ];
 
-  // Use useMemo for performance optimization
+ 
   const filteredItems = useMemo(() => {
-    // Filter items based on the search query first
+    
     const searchedItems =
       searchQuery.length > 0
         ? menuItems.filter((item) =>
@@ -53,7 +53,7 @@ const Menu = ({ isAdmin, searchQuery, menuItems }) => {
           )
         : menuItems;
 
-    // Then filter by category (case-insensitive)
+    
     const categoryFiltered = selectedCategory === "All"
       ? searchedItems
       : searchedItems.filter(
@@ -61,22 +61,22 @@ const Menu = ({ isAdmin, searchQuery, menuItems }) => {
             item.category?.toLowerCase() === selectedCategory.toLowerCase()
         );
 
-    // Create a map of category to its order index
+   
     const categoryOrder = {};
     categories.forEach((cat, index) => {
       categoryOrder[cat.name] = index;
     });
 
-    // Sort by category order first, then by name within category
+  
     return categoryFiltered.sort((a, b) => {
       const orderA = categoryOrder[a.category] ?? 999;
       const orderB = categoryOrder[b.category] ?? 999;
 
-      // If categories have different order, sort by order
+      
       if (orderA !== orderB) {
         return orderA - orderB;
       }
-      // If same category, sort by name
+     
       return a.name.localeCompare(b.name);
     });
   }, [menuItems, searchQuery, selectedCategory]);
@@ -99,8 +99,8 @@ const Menu = ({ isAdmin, searchQuery, menuItems }) => {
         config
       );
       toast.success("Menu item deleted successfully!");
-      // Refetch menu items after deletion
-      window.location.reload(); // Simple way to refresh, or better to update state
+      
+      window.location.reload(); 
     } catch (err) {
       console.error("Error deleting menu item:", err);
       toast.error("Failed to delete menu item.");

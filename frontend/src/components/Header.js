@@ -14,12 +14,12 @@ const Header = ({ user, onLogout, isAdmin, searchQuery, setSearchQuery, menuItem
     navigate("/auth");
   };
 
-  // Filter menu items based on search query
+ 
   const filteredItems = menuItems.filter(item =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Handle click outside to close search results
+  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
@@ -32,7 +32,7 @@ const Header = ({ user, onLogout, isAdmin, searchQuery, setSearchQuery, menuItem
     };
   }, []);
 
-  // Show search results when query is not empty and input is focused
+ 
   const handleInputChange = (e) => {
     setSearchQuery(e.target.value);
     setShowResults(e.target.value.length > 0);

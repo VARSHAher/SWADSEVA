@@ -1,4 +1,4 @@
-// src/App.js
+
 
 import { useState, useEffect, useRef } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
@@ -16,7 +16,7 @@ import Contact from "./pages/Contact";
 import Cart from "./pages/ViewCart";
 import Auth from "./pages/Auth";
 import AdminMenuForm from "./pages/AdminMenuForm";
-// Removed the separate TrackOrder import as it is now part of Contact.js
+
 
 function App() {
   const [user, setUser] = useState(null);

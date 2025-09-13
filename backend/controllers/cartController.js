@@ -1,6 +1,6 @@
 const Cart = require("../models/Cart");
 
-// Get cart
+
 const getCart = async (req, res) => {
   try {
     const cart = await Cart.findOne();
@@ -14,7 +14,7 @@ const getCart = async (req, res) => {
   }
 };
 
-// Add item to cart
+
 const addToCart = async (req, res) => {
   try {
     const { itemId, name, price, image } = req.body;
@@ -41,7 +41,7 @@ const addToCart = async (req, res) => {
   }
 };
 
-// Update quantity
+
 const updateQuantity = async (req, res) => {
   try {
     const { itemId, quantity } = req.body;
@@ -67,7 +67,7 @@ const updateQuantity = async (req, res) => {
   }
 };
 
-// Remove item
+
 const removeItem = async (req, res) => {
   try {
     const { id } = req.params;
@@ -86,7 +86,7 @@ const removeItem = async (req, res) => {
   }
 };
 
-// Clear cart
+
 const clearCart = async (req, res) => {
   try {
     await Cart.deleteMany({});

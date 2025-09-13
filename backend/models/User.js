@@ -19,13 +19,13 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       enum: ["user", "admin"],
-      default: "user", // every signup will be a user unless we change it manually
+      default: "user", 
     },
   },
   { timestamps: true }
 );
 
-// Hash password before saving
+
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   const salt = await bcrypt.genSalt(10);
@@ -33,7 +33,7 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-// Match entered password to hashed password
+
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };

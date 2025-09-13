@@ -1,0 +1,34 @@
+{
+  // Hide heavy folders from Explorer
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/build": true,
+    "**/dist": true,
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true
+  },
+
+  // Don’t watch heavy folders (boost performance)
+  "files.watcherExclude": {
+    "**/node_modules": true,
+    "**/build": true,
+    "**/dist": true
+  },
+
+  // Auto format code on save
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // Auto save after 1 second
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+
+  // Show folder structure clearly
+  "explorer.compactFolders": false,
+
+  // Git smartness
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+  "git.confirmSync": false
+}
