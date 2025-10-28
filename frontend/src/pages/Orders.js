@@ -13,7 +13,8 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/orders");
+        const res = await axios.get("https://swadseva.onrender.com/api/orders");
+
         setOrders(res.data);
       } catch (err) {
         console.error(err);

@@ -4,7 +4,7 @@ import axios from "axios";
 const AddToCartButton = ({ item }) => {
   const handleAddToCart = async () => {
     try {
-      await axios.post("http://localhost:5000/api/cart", {
+      await axios.post("https://swadseva.onrender.com/api/cart", {
         itemId: item._id,
         name: item.name,
         price: item.price,
@@ -12,7 +12,10 @@ const AddToCartButton = ({ item }) => {
       });
       alert(`${item.name} added to cart!`);
     } catch (error) {
-      console.error("Error adding to cart:", error.response?.data || error.message);
+      console.error(
+        "Error adding to cart:",
+        error.response?.data || error.message
+      );
       alert("Failed to add item to cart");
     }
   };

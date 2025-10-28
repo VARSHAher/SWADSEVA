@@ -67,16 +67,17 @@ const AdminMenuForm = () => {
       };
 
       if (itemToUpdate) {
-        await axios.put(
-          `http://localhost:5000/api/menu/${itemToUpdate._id}`,
-          payload,
-          config
-        );
-        toast.success("Menu item updated successfully!");
-      } else {
-        await axios.post("http://localhost:5000/api/menu", payload, config);
-        toast.success("Menu item created successfully!");
-      }
+  await axios.put(
+    `https://swadseva.onrender.com/api/menu/${itemToUpdate._id}`,
+    payload,
+    config
+  );
+  toast.success("Menu item updated successfully!");
+} else {
+  await axios.post("https://swadseva.onrender.com/api/menu", payload, config);
+  toast.success("Menu item created successfully!");
+}
+
 
       setFormData({
         foodName: "",

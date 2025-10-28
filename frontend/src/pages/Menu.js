@@ -95,9 +95,10 @@ const Menu = ({ isAdmin, searchQuery, menuItems }) => {
         },
       };
       await axios.delete(
-        `http://localhost:5000/api/menu/${itemToDelete}`,
-        config
-      );
+  `https://swadseva.onrender.com/api/menu/${itemToDelete}`,
+  config
+);
+
       toast.success("Menu item deleted successfully!");
       
       window.location.reload(); 

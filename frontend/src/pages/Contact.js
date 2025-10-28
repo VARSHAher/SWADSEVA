@@ -65,7 +65,7 @@ console.log('Form submitted!');
     if (isAdmin) {
       const fetchOrders = async () => {
         try {
-          const res = await axios.get("http://localhost:5000/api/orders");
+          const res = await axios.get("https://swadseva.onrender.com/api/orders");
           const activeOrders = res.data.filter(
             (order) => getOrderStatus(order.createdAt).status !== "Delivered"
           );

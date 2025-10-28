@@ -14,7 +14,7 @@ const AdminOrders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/orders");
+        const res = await axios.get("https://swadseva.onrender.com/api/orders");
         setOrders(res.data);
       } catch (err) {
         console.error("Error fetching orders:", err);
@@ -125,7 +125,6 @@ const AdminOrders = () => {
 const AboutContent = () => {
   return (
     <div>
-
       {/* ABOUT */}
       <section
         id="about"
@@ -157,8 +156,6 @@ const AboutContent = () => {
               <small style={{ color: "black" }}>partner restaurants</small>
             </div>
           </div>
-
-         
         </div>
 
         {/* right visual */}

@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect, useRef } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -17,7 +15,6 @@ import Cart from "./pages/ViewCart";
 import Auth from "./pages/Auth";
 import AdminMenuForm from "./pages/AdminMenuForm";
 
-
 function App() {
   const [user, setUser] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -28,7 +25,7 @@ function App() {
 
   const fetchMenuItems = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/menu");
+      const response = await axios.get("https://swadseva.onrender.com/api/menu");
       if (Array.isArray(response.data)) {
         setMenuItems(response.data);
       } else {

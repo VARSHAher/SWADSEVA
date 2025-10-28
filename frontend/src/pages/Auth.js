@@ -19,9 +19,10 @@ const Auth = ({ onLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const endpoint = isSignUp
-      ? "http://localhost:5000/api/users/register"
-      : "http://localhost:5000/api/users/login";
+  const endpoint = isSignUp
+  ? "https://swadseva.onrender.com/api/users/register"
+  : "https://swadseva.onrender.com/api/users/login";
+
 
     try {
       const res = await fetch(endpoint, {
